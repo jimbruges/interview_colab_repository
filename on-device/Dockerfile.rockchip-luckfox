@@ -1,0 +1,22 @@
+# syntax = docker/dockerfile:experimental@sha256:3c244c0c6fc9d6aa3ddb73af4264b3a23597523ac553294218c13735a2c6cf79
+# 20.04
+FROM --platform=linux/amd64 ubuntu:focal-20240216
+
+WORKDIR /app
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# APT repositories
+COPY jobs-container/build-scripts/sb-apt.sh /opt/sb-apt.sh
+RUN bash /opt/sb-apt.sh load-apt-sources ubuntu
+
+RUN apt update && apt install -y wget \
+                                 python unzip \
+                                 python3-pip zip \
+                                 git gawk bison \
+                                 cmake
+
+RUN git clone https://github.com/LuckfoxTECH/luckfox-pico.git && \
+    cd ./luckfox-pico && \
+    git checkout 1e160dee559c6cb638e3d078b543fbcd2fab9699
+ENV PATH="/app/luckfox-pico/tools/linux/toolchain/arm-rockchip830-linux-uclibcgnueabihf/bin:$PATH"
