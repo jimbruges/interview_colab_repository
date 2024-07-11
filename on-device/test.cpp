@@ -2,6 +2,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <stdio.h>
+#include <cassert>
 
 #include "libprocess.hpp"
 
@@ -16,15 +17,12 @@
 
 int main(int argc, char *argv[])
 {
-    size_t sig_len = ARRAY_LENGTH(test_signal);
+    size_t sig_len = ARRAY_LENGTH(test_signal); // 1 axis
     size_t acc_len = ARRAY_LENGTH(test_accelerometer); // 3 axis
 
     float *signal = test_signal;
     float *accelerometer = test_accelerometer;
 
-    printf("%d\n", sizeof(test_signal));
-
-    printf("Before loop, SIG_LEN = %d, ACC_LEN = %d\n", sig_len, acc_len);
     for (int i = 0; i + WIN_SIZE <= sig_len; i += WIN_INC)
     {
         process_data(signal + i, accelerometer + i * 3, WIN_SIZE);

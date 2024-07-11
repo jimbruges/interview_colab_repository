@@ -2,6 +2,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <stdio.h>
+#include <cassert>
 
 #include "libprocess.hpp"
 
@@ -22,9 +23,9 @@ int main(int argc, char *argv[])
     float *signal = test_signal;
     float *accelerometer = test_accelerometer;
 
-    // // What kind of assert we need to put to check that acc_len if of the right
-    // // size knowing sig_len?
-    // assert();
+    // What kind of assert we need to put to check that acc_len if of the right
+    // size knowing sig_len?
+    assert(sig_len * 3 == acc_len);
 
     printf("%d\n", sizeof(test_signal));
 
