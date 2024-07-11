@@ -6,10 +6,6 @@ WORKDIR /app
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-# APT repositories
-COPY jobs-container/build-scripts/sb-apt.sh /opt/sb-apt.sh
-RUN bash /opt/sb-apt.sh load-apt-sources ubuntu
-
 RUN apt update && apt install -y wget \
                                  python unzip \
                                  python3-pip zip \
