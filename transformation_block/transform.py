@@ -7,23 +7,23 @@ import numpy as np
 
 # Set the arguments
 parser = argparse.ArgumentParser(description='Organization transformation block')
-parser.add_argument('--in-file', type=str, required=True, help="Argument passed by Edge Impulse transformation block when the --in-file option is selected")
-parser.add_argument('--out-directory', type=str, required=False, help="Argument passed by Edge Impulse transformation block when the --out-directory option is selected")
-parser.add_argument('--split-interval', type=int, required=True, help="Time interval in seconds for splitting the CSV")
-parser.add_argument('--time-column', type=str, required=True, help="Name of the time column in the CSV")
+parser.add_argument('--infile', type=str, required=True, help="Argument passed by Edge Impulse transformation block when the --infile option is selected")
+parser.add_argument('--outdirectory', type=str, required=False, help="Argument passed by Edge Impulse transformation block when the --outdirectory option is selected")
+parser.add_argument('--splitinterval', type=int, required=True, help="Time interval in seconds for splitting the CSV")
+parser.add_argument('--timecolumn', type=str, required=True, help="Name of the time column in the CSV")
 
 args, unknown = parser.parse_known_args()
-print('--in_file: ', args.in_file, flush=True)
-print('--out_directory: ', args.out_directory, flush=True)
-print('--split_interval: ', args.split_interval, flush=True)
-print('--time-column: ', args.time_column, flush=True)
+print('--infile: ', args.in_file, flush=True)
+print('--outdirectory: ', args.out_directory, flush=True)
+print('--splitinterval: ', args.split_interval, flush=True)
+print('--timecolumn: ', args.time_column, flush=True)
 
 # 
 if args.in_file:
     if not os.path.exists(args.in_file):
-        print('--in-file argument', args.in_file, 'does not exist', flush=True)
+        print('--infile argument', args.in_file, 'does not exist', flush=True)
     else:
-        print('--in-file path', args.in_file, 'exists', flush=True)
+        print('--infile path', args.in_file, 'exists', flush=True)
         print("filename: ", os.path.basename(args.in_file))
 
         # 
@@ -59,5 +59,5 @@ if args.in_file:
         print("Finished", flush=True)
         exit(0)
 else:
-    print('Missing argument --in-file not exist')
+    print('Missing argument --infile not exist')
     sys.exit(1)
