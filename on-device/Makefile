@@ -12,12 +12,6 @@ CFLAGS += -DEI_CLASSIFIER_ENABLE_DETECTION_POSTPROCESS_OP=1
 ifeq (${CC}, clang)
 	CFLAGS += -Wno-asm-operand-widths
 endif
-CXXFLAGS += -std=c++14
-LDFLAGS += -lm -lstdc++
-
-# Enable address sanitizer
-CFLAGS += -fno-omit-frame-pointer -fsanitize=address
-LDFLAGS += -fsanitize=address
 
 CSOURCES = 
 CXXSOURCES = test.cpp libprocess/src/libprocess.cpp
@@ -37,6 +31,9 @@ ifeq ($(TARGET_ROCKCHIP),1)
 	BUILD_DIR = build-rockchip
 else
 	BUILD_DIR = build
+	# Enable address sanitizer
+	CFLAGS += -fno-omit-frame-pointer -fsanitize=address
+	LDFLAGS += -fsanitize=address
 endif
 	MKDIR_BUILD = mkdir -p $(BUILD_DIR)
 endif
