@@ -11,9 +11,9 @@
 #define ARRAY_LENGTH(array) (sizeof((array)) / sizeof((array)[0]))
 
 // Same for accelerometer and signal
-#define FS 100
-#define WIN_SIZE 2 * FS
-#define WIN_INC 2 * FS
+#define FREQ 100
+#define WIN_SIZE 2 * FREQ // ?
+#define WIN_STRIDE 2 * FREQ // ?
 
 int main(int argc, char *argv[])
 {
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     float *signal = test_signal;
     float *accelerometer = test_accelerometer;
 
-    for (int i = 0; i + WIN_SIZE <= sig_len; i += WIN_INC)
+    for (int i = 0; i + WIN_SIZE <= sig_len; i += WIN_STRIDE)
     {
         process_data(signal + i, accelerometer + i * 3, WIN_SIZE);
     }
