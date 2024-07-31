@@ -31,7 +31,7 @@ if args.in_file:
         # 
         df[args.time_column] = pd.to_datetime(df[args.time_column], unit='ns')
         # 
-        df.set_index('time', inplace=True)
+        df.set_index(args.time_column, inplace=True)
 
         # 
         def split_dataframe(df, split_interval_seconds):
